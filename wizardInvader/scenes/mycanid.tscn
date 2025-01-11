@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3oad81r6dyc5"]
+
+[ext_resource type="Texture2D" uid="uid://ygm6v400skl4" path="res://sprites/MycanidEnemy.png" id="1_jq8v6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_larbw"]
+atlas = ExtResource("1_jq8v6")
+region = Rect2(0, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1nn5"]
+atlas = ExtResource("1_jq8v6")
+region = Rect2(32, 0, 32, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5uwsg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_larbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1nn5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7o632"]
+size = Vector2(32, 28)
+
+[node name="Mycanid" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5uwsg")
+frame_progress = 0.995615
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_7o632")
