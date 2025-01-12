@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=3 uid="uid://6gbvnx8togs8"]
+
+[ext_resource type="Script" path="res://scenes/settings_menu.gd" id="1_qtmma"]
+
+[node name="SettingsMenu" type="Node2D"]
+script = ExtResource("1_qtmma")
+
+[node name="Audio" type="Label" parent="."]
+offset_left = 288.0
+offset_top = 7.0
+offset_right = 358.0
+offset_bottom = 52.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Audio"
+
+[node name="Visual" type="Label" parent="."]
+offset_left = 288.0
+offset_top = 134.0
+offset_right = 370.0
+offset_bottom = 179.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Visual"
+
+[node name="HSeparator" type="VBoxContainer" parent="."]
+offset_left = 94.0
+offset_top = 60.0
+offset_right = 582.0
+offset_bottom = 128.0
+theme_override_constants/separation = 10
+
+[node name="MasterVolume" type="HSlider" parent="HSeparator"]
+layout_mode = 2
+value = 100.0
+
+[node name="MusicVolume" type="HSlider" parent="HSeparator"]
+layout_mode = 2
+value = 100.0
+
+[node name="SFXVolume" type="HSlider" parent="HSeparator"]
+layout_mode = 2
+value = 100.0
+
+[node name="HSeparator2" type="VBoxContainer" parent="."]
+offset_left = 52.0
+offset_top = 55.0
+offset_right = 90.0
+offset_bottom = 132.0
+theme_override_constants/separation = 10
+
+[node name="MasterVolume" type="Label" parent="HSeparator2"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "Master"
+horizontal_alignment = 2
+
+[node name="MusicVolume" type="Label" parent="HSeparator2"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "Music"
+horizontal_alignment = 2
+
+[node name="SFXVolume" type="Label" parent="HSeparator2"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "SFX"
+horizontal_alignment = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+offset_left = 325.0
+offset_top = 194.0
+offset_right = 333.0
+offset_bottom = 202.0
+scale = Vector2(4.6, 3.43182)
+color = Color(1, 1, 1, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 197.0
+offset_top = 195.0
+offset_right = 292.0
+offset_bottom = 214.0
+scale = Vector2(1.24845, 1.24845)
+theme_override_constants/outline_size = 5
+text = "BackGround Color"
+
+[node name="Return" type="Button" parent="."]
+offset_left = 178.0
+offset_top = 262.0
+offset_right = 255.0
+offset_bottom = 304.0
+theme_override_font_sizes/font_size = 30
+text = "Undo And
+Return"
+
+[node name="Save" type="Button" parent="."]
+offset_left = 366.0
+offset_top = 262.0
+offset_right = 443.0
+offset_bottom = 304.0
+theme_override_font_sizes/font_size = 30
+text = "Save And
+Return"
+
+[connection signal="drag_ended" from="HSeparator/MasterVolume" to="." method="_on_master_volume_drag_ended"]
+[connection signal="drag_ended" from="HSeparator/MusicVolume" to="." method="_on_music_volume_drag_ended"]
+[connection signal="drag_ended" from="HSeparator/SFXVolume" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Save" to="." method="_on_save_pressed"]

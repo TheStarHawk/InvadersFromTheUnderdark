@@ -1,14 +1,200 @@
-[gd_scene load_steps=2 format=3 uid="uid://hjabrsw5t4ta"]
+[gd_scene load_steps=10 format=3 uid="uid://hjabrsw5t4ta"]
 
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_qjoi2"]
 [ext_resource type="PackedScene" uid="uid://bn3exy77q2238" path="res://scenes/wizard.tscn" id="1_vcqux"]
+[ext_resource type="PackedScene" uid="uid://dpoqhpi7rw463" path="res://scenes/shield.tscn" id="2_dbiu5"]
+[ext_resource type="Texture2D" uid="uid://bwnqow6m4g7j5" path="res://sprites/Wizard.png" id="4_2l4ee"]
+[ext_resource type="AudioStream" uid="uid://dpll2om6vkfd1" path="res://audio/Background.ogg" id="5_w62q1"]
+[ext_resource type="AudioStream" uid="uid://cwh8p5fcxr7v3" path="res://audio/WaveComplete.wav" id="6_xmq0i"]
+[ext_resource type="AudioStream" uid="uid://bp7e5icaoi0p5" path="res://audio/GameOver.wav" id="7_pyf1x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhtgy"]
+size = Vector2(575, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8vvk"]
+size = Vector2(20, 360)
 
 [node name="Test" type="Node2D"]
+script = ExtResource("1_qjoi2")
 
 [node name="Player" type="Node2D" parent="."]
 
 [node name="Wizard" parent="Player" instance=ExtResource("1_vcqux")]
-position = Vector2(307, 303)
-
-[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(320, 333)
 
 [node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Shields" type="Node2D" parent="."]
+
+[node name="Shield" parent="Shields" instance=ExtResource("2_dbiu5")]
+position = Vector2(60, 293)
+
+[node name="Shield2" parent="Shields" instance=ExtResource("2_dbiu5")]
+position = Vector2(190, 293)
+
+[node name="Shield3" parent="Shields" instance=ExtResource("2_dbiu5")]
+position = Vector2(320, 293)
+
+[node name="Shield4" parent="Shields" instance=ExtResource("2_dbiu5")]
+position = Vector2(450, 293)
+
+[node name="Shield5" parent="Shields" instance=ExtResource("2_dbiu5")]
+position = Vector2(580, 293)
+
+[node name="GameOver" type="Area2D" parent="Shields"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shields/GameOver"]
+position = Vector2(320, 310)
+shape = SubResource("RectangleShape2D_uhtgy")
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="Borders" type="Node2D" parent="."]
+visible = false
+
+[node name="Border" type="StaticBody2D" parent="Borders"]
+position = Vector2(10, 180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Border"]
+shape = SubResource("RectangleShape2D_k8vvk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders/Border"]
+position = Vector2(620, 0)
+shape = SubResource("RectangleShape2D_k8vvk")
+
+[node name="EnemyBorder" type="Area2D" parent="Borders"]
+position = Vector2(20, 180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/EnemyBorder"]
+shape = SubResource("RectangleShape2D_k8vvk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders/EnemyBorder"]
+position = Vector2(600, 0)
+shape = SubResource("RectangleShape2D_k8vvk")
+
+[node name="Timer" type="Timer" parent="Borders/EnemyBorder"]
+wait_time = 0.5
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 640.0
+offset_bottom = 35.0
+color = Color(0.0923971, 0.0923971, 0.0923971, 0.282353)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 89.0
+offset_bottom = 27.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Score: 100"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 514.0
+offset_top = 4.0
+offset_right = 558.0
+offset_bottom = 27.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Lives:"
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 293.0
+offset_top = 4.0
+offset_right = 344.0
+offset_bottom = 27.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Wave: 1"
+
+[node name="Wizard" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(563, 17)
+texture = ExtResource("4_2l4ee")
+
+[node name="Wizard2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(593, 17)
+texture = ExtResource("4_2l4ee")
+
+[node name="Wizard3" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(623, 17)
+texture = ExtResource("4_2l4ee")
+
+[node name="GameOverScreen" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameOverScreen"]
+layout_mode = 0
+offset_top = 35.0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.545098, 0.00784314, 0, 0.360784)
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOverScreen"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 93.0
+offset_right = 400.0
+offset_bottom = 149.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "GameOver"
+
+[node name="Restart" type="Button" parent="CanvasLayer/GameOverScreen"]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 159.0
+offset_right = 346.0
+offset_bottom = 186.0
+text = "Restart"
+
+[node name="Menu" type="Button" parent="CanvasLayer/GameOverScreen"]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 192.0
+offset_right = 364.0
+offset_bottom = 219.0
+text = "Back to Menu"
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/GameOverScreen"]
+visible = false
+layout_mode = 0
+offset_left = 299.0
+offset_top = 225.0
+offset_right = 347.625
+offset_bottom = 252.0
+placeholder_text = "Initials"
+alignment = 1
+max_length = 3
+
+[node name="resetTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="BackGround" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_w62q1")
+volume_db = -10.0
+pitch_scale = 0.95
+autoplay = true
+
+[node name="WaveComplete" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xmq0i")
+pitch_scale = 1.3
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+process_mode = 2
+stream = ExtResource("7_pyf1x")
+
+[connection signal="area_entered" from="Shields/GameOver" to="." method="_on_game_over_area_entered"]
+[connection signal="area_entered" from="Borders/EnemyBorder" to="." method="_on_enemy_border_area_entered"]
+[connection signal="timeout" from="Borders/EnemyBorder/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/GameOverScreen/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverScreen/Menu" to="." method="_on_menu_pressed"]
+[connection signal="timeout" from="resetTimer" to="." method="_on_reset_timer_timeout"]

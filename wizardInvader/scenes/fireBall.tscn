@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgbhfree8tfwc"]
+[gd_scene load_steps=16 format=3 uid="uid://dgbhfree8tfwc"]
 
 [ext_resource type="Script" path="res://scripts/fireBall.gd" id="1_6tl0h"]
 [ext_resource type="Texture2D" uid="uid://djl2ax11mcx2v" path="res://sprites/Fireball.png" id="2_id0jt"]
+[ext_resource type="Texture2D" uid="uid://dbmir5brlcmdg" path="res://sprites/GoldCoin.png" id="3_v6f3x"]
+[ext_resource type="Texture2D" uid="uid://umyf8gyh4okm" path="res://sprites/SlimeBall.png" id="4_udoer"]
+[ext_resource type="Texture2D" uid="uid://6eb62pm1sxn5" path="res://sprites/Spear.png" id="5_el4e4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vemf"]
 atlas = ExtResource("2_id0jt")
@@ -46,15 +49,113 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_gro40"]
+offsets = PackedFloat32Array(0.00666667, 0.993333)
+colors = PackedColorArray(0.984314, 0.298039, 0.2, 1, 0.984314, 0.960784, 0.462745, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_75cal"]
 radius = 3.0
 
-[node name="FireBall" type="CharacterBody2D"]
+[sub_resource type="Gradient" id="Gradient_yyy6g"]
+colors = PackedColorArray(1, 0.768627, 0.121569, 1, 0.984314, 0.960784, 0.462745, 1)
+
+[sub_resource type="Gradient" id="Gradient_bqg3s"]
+offsets = PackedFloat32Array(0.00666667, 0.993333)
+colors = PackedColorArray(0.27451, 0.380392, 0.168627, 1, 0.536991, 0.738224, 0.349995, 1)
+
+[node name="Projectile" type="CharacterBody2D"]
+collision_mask = 0
 script = ExtResource("1_6tl0h")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Fireball" type="Node2D" parent="."]
+visible = false
+
+[node name="Fireball" type="AnimatedSprite2D" parent="Fireball"]
 sprite_frames = SubResource("SpriteFrames_7xupy")
-frame_progress = 0.888623
+frame_progress = 0.409164
+
+[node name="CPUParticles" type="CPUParticles2D" parent="Fireball"]
+position = Vector2(0, 3)
+amount = 16
+lifetime = 0.5
+randomness = 0.29
+direction = Vector2(0, 4)
+spread = 60.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+scale_amount_max = 2.0
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+color_ramp = SubResource("Gradient_gro40")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_75cal")
+
+[node name="GoldCoin" type="Node2D" parent="."]
+visible = false
+
+[node name="GoldCoin" type="Sprite2D" parent="GoldCoin"]
+texture = ExtResource("3_v6f3x")
+
+[node name="CPUParticles" type="CPUParticles2D" parent="GoldCoin"]
+position = Vector2(0, -2)
+amount = 3
+randomness = 0.29
+direction = Vector2(0, -2)
+spread = 90.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+angle_max = 60.0
+scale_amount_max = 3.0
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+color_ramp = SubResource("Gradient_yyy6g")
+
+[node name="SlimeBall" type="Node2D" parent="."]
+visible = false
+
+[node name="SlimeBall" type="Sprite2D" parent="SlimeBall"]
+texture = ExtResource("4_udoer")
+
+[node name="CPUParticles" type="CPUParticles2D" parent="SlimeBall"]
+position = Vector2(0, -3)
+randomness = 0.29
+direction = Vector2(0, 4)
+spread = 60.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+scale_amount_max = 2.0
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+color_ramp = SubResource("Gradient_bqg3s")
+
+[node name="Spear" type="Node2D" parent="."]
+visible = false
+
+[node name="Spear" type="Sprite2D" parent="Spear"]
+position = Vector2(0, -7)
+texture = ExtResource("5_el4e4")
+
+[node name="CPUParticles" type="CPUParticles2D" parent="Spear/Spear"]
+position = Vector2(0, -9)
+amount = 3
+randomness = 0.29
+direction = Vector2(0, 4)
+spread = 60.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpoqhpi7rw463"]
+
+[ext_resource type="Texture2D" uid="uid://cwxrue7oyneei" path="res://sprites/Shield.png" id="1_73jx4"]
+[ext_resource type="Script" path="res://scripts/shield.gd" id="1_ssfa8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5831c"]
+height = 64.0
+
+[node name="Shield" type="Area2D"]
+script = ExtResource("1_ssfa8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.207333, 1, 0.18, 0.831373)
+position = Vector2(0, -3)
+texture = ExtResource("1_73jx4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5831c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

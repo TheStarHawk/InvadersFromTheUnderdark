@@ -1,13 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn3exy77q2238"]
+[gd_scene load_steps=11 format=3 uid="uid://bn3exy77q2238"]
 
 [ext_resource type="Script" path="res://scripts/wizard.gd" id="1_x0agw"]
 [ext_resource type="Texture2D" uid="uid://bwnqow6m4g7j5" path="res://sprites/Wizard.png" id="2_w7cg4"]
+[ext_resource type="Texture2D" uid="uid://c5lap21aug8oa" path="res://sprites/Dying.png" id="2_w7ybl"]
+[ext_resource type="AudioStream" uid="uid://0bcomv42k5ma" path="res://audio/Die.wav" id="4_pneda"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf4ek"]
+atlas = ExtResource("2_w7ybl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayy1v"]
+atlas = ExtResource("2_w7ybl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1nkv"]
+atlas = ExtResource("2_w7ybl")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80cdn"]
+atlas = ExtResource("2_w7cg4")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vdq4o"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_w7cg4")
+"texture": SubResource("AtlasTexture_tf4ek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayy1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1nkv")
+}],
+"loop": false,
+"name": &"ded",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80cdn")
 }],
 "loop": true,
 "name": &"default",
@@ -21,11 +53,26 @@ radius = 8.0
 script = ExtResource("1_x0agw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 2
 sprite_frames = SubResource("SpriteFrames_vdq4o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_s4c4l")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+process_mode = 3
+wait_time = 3.0
 one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_s4c4l")
+
+[node name="Die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pneda")
+pitch_scale = 0.85
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

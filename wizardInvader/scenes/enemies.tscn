@@ -1,0 +1,144 @@
+[gd_scene load_steps=5 format=3 uid="uid://i5j2ux4j0c4y"]
+
+[ext_resource type="Script" path="res://scripts/enemies.gd" id="1_kl3u2"]
+[ext_resource type="PackedScene" uid="uid://igjxg1qo0c87" path="res://scenes/slime.tscn" id="2_emal6"]
+[ext_resource type="PackedScene" uid="uid://deysfwseiy741" path="res://scenes/mimic.tscn" id="3_vynqv"]
+[ext_resource type="PackedScene" uid="uid://c3oad81r6dyc5" path="res://scenes/myconid.tscn" id="4_58m41"]
+
+[node name="Enemies" type="Node2D"]
+position = Vector2(320, 154)
+script = ExtResource("1_kl3u2")
+
+[node name="Slime" parent="." instance=ExtResource("2_emal6")]
+
+[node name="Slime2" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(40, 0)
+
+[node name="Slime3" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(80, 0)
+
+[node name="Slime4" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(-40, 0)
+
+[node name="Slime5" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(-80, 0)
+
+[node name="Slime6" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(0, -35)
+
+[node name="Slime7" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(40, -35)
+
+[node name="Slime8" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(80, -35)
+
+[node name="Slime9" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(-40, -35)
+
+[node name="Slime10" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(-80, -35)
+
+[node name="Slime11" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(120, 0)
+
+[node name="Slime12" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(160, 0)
+
+[node name="Slime13" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(-120, 0)
+
+[node name="Slime14" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(-160, 0)
+
+[node name="Slime15" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(120, -35)
+
+[node name="Slime16" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(160, -35)
+
+[node name="Slime17" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(-120, -35)
+
+[node name="Slime18" parent="." instance=ExtResource("2_emal6")]
+position = Vector2(-160, -35)
+
+[node name="Mimic" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(0, -70)
+
+[node name="Mimic2" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(40, -70)
+
+[node name="Mimic3" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(80, -70)
+
+[node name="Mimic4" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(-40, -70)
+
+[node name="Mimic5" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(-80, -70)
+
+[node name="Mimic6" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(120, -70)
+
+[node name="Mimic7" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(160, -70)
+
+[node name="Mimic8" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(-120, -70)
+
+[node name="Mimic9" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(-160, -70)
+
+[node name="Mimic10" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(0, -105)
+
+[node name="Mimic11" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(40, -105)
+
+[node name="Mimic12" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(80, -105)
+
+[node name="Mimic13" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(-40, -105)
+
+[node name="Mimic14" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(-80, -105)
+
+[node name="Mimic15" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(120, -105)
+
+[node name="Mimic16" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(160, -105)
+
+[node name="Mimic17" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(-120, -105)
+
+[node name="Mimic18" parent="." instance=ExtResource("3_vynqv")]
+position = Vector2(-160, -105)
+
+[node name="Myconid" parent="." instance=ExtResource("4_58m41")]
+position = Vector2(0, -140)
+
+[node name="Myconid2" parent="." instance=ExtResource("4_58m41")]
+position = Vector2(40, -140)
+
+[node name="Myconid3" parent="." instance=ExtResource("4_58m41")]
+position = Vector2(-40, -140)
+
+[node name="Myconid4" parent="." instance=ExtResource("4_58m41")]
+position = Vector2(80, -140)
+
+[node name="Myconid5" parent="." instance=ExtResource("4_58m41")]
+position = Vector2(-80, -140)
+
+[node name="Myconid6" parent="." instance=ExtResource("4_58m41")]
+position = Vector2(120, -140)
+
+[node name="Myconid7" parent="." instance=ExtResource("4_58m41")]
+position = Vector2(-120, -140)
+
+[node name="Myconid8" parent="." instance=ExtResource("4_58m41")]
+position = Vector2(160, -140)
+
+[node name="Myconid9" parent="." instance=ExtResource("4_58m41")]
+position = Vector2(-160, -140)
